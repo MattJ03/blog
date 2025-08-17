@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Database\Factories\User;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\blog>
  */
@@ -17,8 +17,11 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker()->sentence,
-            'body' => $this->faker()->
+         'title' => $this->faker->title(),
+         'body' => $this->faker->paragraph(10, true),
+         'category' => $this->faker->word(),
+         'user_id' => User::factory(),
+ 
         ];
     }
 }
