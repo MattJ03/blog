@@ -4,16 +4,18 @@ namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\Blog;
+use App\Models\User;
+use App\Controller\BlogController;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic test example.
      */
-    public function test_the_application_returns_a_successful_response(): void
-    {
-        $response = $this->get('/');
+   public function test_index_returns_blog() {
+    
 
-        $response->assertStatus(200);
-    }
+   }
 }

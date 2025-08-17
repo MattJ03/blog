@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Comments;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model
 {
+    use HasFactory;
     protected $fillable = ['title', 'body', 'category', 'user_id'];
 
     public function user() {
