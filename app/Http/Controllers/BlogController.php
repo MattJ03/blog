@@ -8,11 +8,9 @@ use App\Models\Blog;
 
 class BlogController extends Controller {
 
-    public function index() {
-        $blogs = Blog::query()->paginate(15);
-        return response()->json([
-       'blogs' => $blogs,
-        'message' => 'Tasks indexed successfully',
-        ], 200);
-    }
+   public function index() {
+    return Blog::query()->paginate(5);
+   }
+
+
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Blog;
 use App\Models\User;
@@ -14,8 +14,5 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-   public function test_index_returns_blog() {
-    
-
-   }
+   
 }
