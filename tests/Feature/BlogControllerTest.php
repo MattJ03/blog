@@ -11,6 +11,7 @@ use App\Models\Blog;
 
 class BlogControllerTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function test_index_returns_when_single_blog_in_database() {
         $blog = Blog::factory()->create();
@@ -29,9 +30,7 @@ class BlogControllerTest extends TestCase
         $response = $this->getJson('api/index');
         $response->assertStatus(200);
 
-        $response->assertJsonFragment([
-            'title' => $blogs->first()->title,
-            'body' => $blogs->first()->body,
-        ]);
+        $response->assertJsonPath('data.0.title', $blogs->first()->title);
+        $response->assertJsonPath('data.0.body', $blogs->first()->body);
     }
 }
