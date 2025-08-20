@@ -10,6 +10,8 @@ use Database\Factories\BlogFactory;
 use App\Models\Blog;
 use App\Services\BlogService;
 use App\Models\User;
+use App\Services\Log;
+
 class BlogControllerTest extends TestCase
 {
     use RefreshDatabase;

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Blog;
+use Illuminate\Support\Facades\Log;
 
  class BlogService {
 
@@ -15,7 +16,7 @@ use App\Models\Blog;
         ]);
        
         Log::info('Blog created', [
-            'id' => $data->id,
+            'id' => $createdBlog->id,
         ]);
 
         return $createdBlog;
