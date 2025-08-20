@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Services\BlogService;
+use App\Models\User;
 
 class BlogController extends Controller {
+
+   protected $blogService;
+
+   public function __construct(BlogService $blogService) {
+      $this->blogService = $blogService;
+   }
 
    public function index() {
     return Blog::query()->paginate(5);
@@ -15,11 +22,13 @@ class BlogController extends Controller {
    public function store(Request $request, BlogService $blogService) {
      
       $validatedData = $request->validate([
-        'name' => 'required|max:50',
+        'title' => 'required|max:50',
         'body' => 'required|max:10000',
         'category' => 'nullable|max:25',
       ]);
-      $blogService->store($validatedData);
+     $blog = $blogService->store($validatedData);
+
+     return response()->json($blog, 201);
    }
    
   }

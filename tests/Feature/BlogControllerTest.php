@@ -9,7 +9,7 @@ use App\Http\Controllers\BlogController;
 use Database\Factories\BlogFactory;
 use App\Models\Blog;
 use App\Services\BlogService;
-
+use App\Models\User;
 class BlogControllerTest extends TestCase
 {
     use RefreshDatabase;
@@ -33,5 +33,22 @@ class BlogControllerTest extends TestCase
 
         $response->assertJsonPath('data.0.title', $blogs->first()->title);
         $response->assertJsonPath('data.0.body', $blogs->first()->body);
+    }
+
+    public function test_create_blog() {
+        $data = [
+          'title' => 'Fake title',
+          'body' => 'Fake body about a fake blog in a fake site',
+          'category' => 'Fake', 
+          'user_id' => User::factory(),
+        ];
+
+        $response = $this->postJson('api/store/blogs', $data);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('blogs', [
+          'title' => 'Fake title',
+        ]);
+
     }
 }

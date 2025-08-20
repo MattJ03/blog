@@ -7,7 +7,13 @@ use App\Models\Blog;
 
     public function store(array $data) {
 
-        $createdBlog = Blog::create($data);
+        $createdBlog = Blog::create([
+          'title' => $data['title'],
+          'body' => $data['body'],
+          'category' => $data['category'],
+          'user_id' => $data['user_id'] ?? null,
+        ]);
+       
         Log::info('Blog created', [
             'id' => $data->id,
         ]);
