@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Http\Controllers\BlogController;
 use Database\Factories\BlogFactory;
 use App\Models\Blog;
+use App\Services\BlogService;
 
 class BlogControllerTest extends TestCase
 {

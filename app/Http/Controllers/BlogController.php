@@ -12,8 +12,14 @@ class BlogController extends Controller {
     return Blog::query()->paginate(5);
    }
    
-   public function store() {
-
+   public function store(Request $request, BlogService $blogService) {
+     
+      $validatedData = $request->validate([
+        'name' => 'required|max:50',
+        'body' => 'required|max:10000',
+        'category' => 'nullable|max:25',
+      ]);
+      $blogService->store($validatedData);
    }
    
   }
