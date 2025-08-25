@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
         $createdBlog = Blog::create([
           'title' => $data['title'],
           'body' => $data['body'],
-          'category' => $data['category'],
+          'category' => $data['category'] ?? null,
           'user_id' => $data['user_id'] ?? null,
         ]);
        

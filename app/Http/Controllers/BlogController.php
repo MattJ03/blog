@@ -28,7 +28,8 @@ class BlogController extends Controller {
       ]);
      $blog = $blogService->store($validatedData);
 
-     return response()->json($blog, 201);
+     return response()->json([
+      'data' => $blog], 201);
    }
    
   }

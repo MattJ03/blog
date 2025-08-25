@@ -108,6 +108,18 @@ class BlogControllerTest extends TestCase
           'title' => 'Adam is bro',
           
         ]);
+    }
 
+    public function test_returns_output() {
+        $dataAgain = [
+            'title' => 'Ravens win Superbowl',
+             'body' => 'Will never happen',
+        ];
+
+        $response = $this->postJson('api/blogs', $dataAgain);
+        $response->assertStatus(201)
+        ->assertJson([
+           'data' => $dataAgain,
+        ]);
     }
 }
