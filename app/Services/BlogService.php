@@ -21,4 +21,16 @@ use Illuminate\Support\Facades\Log;
 
         return $createdBlog;
     }
- }
+
+    public function update(array $data, $id) {
+        $blog = Blog::findOrFail($id);
+        $blog->update([
+          'title' => $data['title'] ?? $blog->title,
+          'body' => $data['body'] ?? $blog->body,
+          'category' => $data['category'] ?? $blog->category,
+          'user_id' => $data['user_id'] ?? $blog->user_id,
+        ]);
+        return $blog;
+        }
+    }
+ 

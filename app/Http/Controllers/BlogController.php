@@ -31,5 +31,20 @@ class BlogController extends Controller {
      return response()->json([
       'data' => $blog], 201);
    }
+
+   public function update(Request $request, $id) {
+   
+      $validatedData = $request->validate([
+         'title' => 'required|max:50',
+        'body' => 'required|max:10000',
+        'category' => 'nullable|max:25',
+      ]);
+
+      $blog = $this->blogService->update($request, $id);
+      return response()->json([
+         'data' => $blog,
+         'message' => 'blog updated',
+      ], 200);
+   }
    
   }
