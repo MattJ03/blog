@@ -53,4 +53,18 @@ class BlogControllerTest extends TestCase
         ]);
 
     }
+
+    public function test_blocked_missing() {
+        $data = [
+        'title' => 'Blog title here',
+        'body' => '',
+        ];
+
+        $response = $this->postJson('api/store/blogs', $data);
+
+        $response->assertStatus(422);
+        $this->assertDatabaseMissing('blogs', [
+            'title' => 'Blog title here',
+        ]);
+    }
 }
