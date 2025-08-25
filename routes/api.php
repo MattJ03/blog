@@ -6,3 +6,4 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/index', [BlogController::class, 'index']);
 Route::post('/blogs', [BlogController::class, 'store']);
+Route::put('/blogs/{id}', [BlogController::class, 'update']);

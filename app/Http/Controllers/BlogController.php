@@ -40,7 +40,7 @@ class BlogController extends Controller {
         'category' => 'nullable|max:25',
       ]);
 
-      $blog = $this->blogService->update($request, $id);
+      $blog = $this->blogService->update($validatedData, $id);
       return response()->json([
          'data' => $blog,
          'message' => 'blog updated',

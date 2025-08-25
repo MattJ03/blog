@@ -122,4 +122,28 @@ class BlogControllerTest extends TestCase
            'data' => $dataAgain,
         ]);
     }
+
+    public function test_update_blog() {
+       $blog = Blog::factory()->create();
+
+       $data = [
+        'title' => 'new title',
+        'body' => 'body of new title',
+       ];
+
+        $response = $this->putJson("api/blogs/{$blog->id}", $data);
+        $response->assertStatus(200);
+    }
+
+    public function test_update_fail_on_no_title() {
+        $blog = Blog::factory()->create();
+
+        $data = [
+            'title' => '',
+            'body' => 'ba dum tiss',
+        ];
+
+        $response = $this->putJson("api/blogs/{$blog->id}", $data);
+        $response->assertStatus(422);
+    }
 }
