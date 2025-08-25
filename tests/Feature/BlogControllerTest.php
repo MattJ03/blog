@@ -45,7 +45,7 @@ class BlogControllerTest extends TestCase
           'user_id' => User::factory(),
         ];
 
-        $response = $this->postJson('api/store/blogs', $data);
+        $response = $this->postJson('api/blogs', $data);
 
         $response->assertStatus(201);
         $this->assertDatabaseHas('blogs', [
@@ -60,11 +60,54 @@ class BlogControllerTest extends TestCase
         'body' => '',
         ];
 
-        $response = $this->postJson('api/store/blogs', $data);
+        $response = $this->postJson('api/blogs', $data);
 
         $response->assertStatus(422);
         $this->assertDatabaseMissing('blogs', [
             'title' => 'Blog title here',
         ]);
+    }
+
+    public function test_need_title() {
+        $data = [
+            'title' => '',
+            'body' => 'hi',
+        ];
+
+        $response = $this->postJson('api/blogs', $data);
+        $response->assertStatus(422);
+        $this->assertDatabaseMissing('blogs', [
+            'body' => 'hi',
+        ]);
+    }
+
+    public function test_accepts_category() {
+        $data = [
+        'title' => 'I love Anto',
+        'body' => 'Hes a loyal friend!',
+        'category' => 'Friendship',
+        ];
+
+        $response = $this->postJson('api/blogs', $data);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('blogs', [
+            'title' => 'I love Anto',
+        ]);
+    }
+
+    public function test_category_can_nullable() {
+        $data = [
+         'title' => 'Adam is bro',
+         'body' => 'Possibly',
+         'category' => '',
+        ];
+
+        $response = $this->postJson('api/blogs', $data);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('blogs', [
+          'title' => 'Adam is bro',
+          
+        ]);
+
     }
 }
