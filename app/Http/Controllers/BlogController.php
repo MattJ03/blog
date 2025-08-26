@@ -46,5 +46,15 @@ class BlogController extends Controller {
          'message' => 'blog updated',
       ], 200);
    }
+
+   public function delete($id) {
+      $blog = Blog::findOrFail($id);
+
+      $blog->delete();
+      if($blog) {
+          return response()->json(['message' => 'blog not deleted', 'blog' => $blog]);
+      }
+      return response()->json(['message' => 'blog deleted'], 204);
+   }
    
   }

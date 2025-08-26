@@ -146,4 +146,11 @@ class BlogControllerTest extends TestCase
         $response = $this->putJson("api/blogs/{$blog->id}", $data);
         $response->assertStatus(422);
     }
+
+    public function test_delete_blog() {
+        $blog = Blog::factory()->create();
+
+        $response = $this->delete("api/blogs/{$blog->id}");
+        $response->assertStatus(200);
+    }
 }
