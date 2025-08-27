@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function login(Request $request) {
         $credentials = $request->validate([
             'email' => 'required|max:25|email',
-            'password' => 'required|password|max:30',
+            'password' => 'required|max:30',
         ]);
 
         if(!Auth::attempt($credentials)) {
