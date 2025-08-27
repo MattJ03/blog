@@ -13,6 +13,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 Route::middleware('auth:sanctum')->group(function () {
 Route::post('/blogs', [BlogController::class, 'store']);
-Route::post('/blogs/{id}', [BlogController::class, 'update']);
+Route::put('/blogs/{id}', [BlogController::class, 'update']);
 Route::delete('/blogs/{id}', [BlogController::class, 'delete']);
 });

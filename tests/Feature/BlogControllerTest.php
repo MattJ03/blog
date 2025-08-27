@@ -128,6 +128,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_returns_output() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $dataAgain = [
             'title' => 'Ravens win Superbowl',
              'body' => 'Will never happen',
@@ -141,6 +143,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_update_blog() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
        $blog = Blog::factory()->create();
 
        $data = [
