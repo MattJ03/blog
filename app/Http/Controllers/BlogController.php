@@ -20,7 +20,10 @@ class BlogController extends Controller {
    }
    
    public function store(Request $request, BlogService $blogService) {
-     
+
+      if(!$request->user()->is_Admin) {
+         return response()->json(['message' => 'you do not have permission to post']);
+      }
       $validatedData = $request->validate([
         'title' => 'required|max:50',
         'body' => 'required|max:10000',
@@ -33,6 +36,10 @@ class BlogController extends Controller {
    }
 
    public function update(Request $request, $id) {
+
+      if(!$request->user()->is_Admin) {
+         return response()->json(['message' => 'you do not have permission to update posts']);
+      }
    
       $validatedData = $request->validate([
          'title' => 'required|max:50',
