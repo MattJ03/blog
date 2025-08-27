@@ -17,9 +17,12 @@ class BlogControllerTest extends TestCase
     use RefreshDatabase;
 
     public function test_index_returns_when_single_blog_in_database() {
+         $user = User::factory()->create();
+         $this->actingAs($user, 'sanctum');
+      
         $blog = Blog::factory()->create();
-   
-        $response = $this->getJson('/api/index');
+           
+        $response = $this->getJson('/api/blogs');
         $response->assertStatus(200);
 
         $response->assertJsonFragment([
@@ -28,9 +31,12 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_index_multiple_entries() {
+       $user = User::factory()->create();
+       $this->actingAs($user, 'sanctum');
+       
         $blogs = Blog::factory()->count(5)->create();
 
-        $response = $this->getJson('api/index');
+        $response = $this->getJson('api/blogs');
         $response->assertStatus(200);
 
         $response->assertJsonPath('data.0.title', $blogs->first()->title);
@@ -38,12 +44,15 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_create_blog() {
+      $user = User::factory()->create();
+      $this->actingAs($user, 'sanctum');
         $data = [
           'title' => 'Fake title',
           'body' => 'Fake body about a fake blog in a fake site',
           'category' => 'Fake', 
           'user_id' => User::factory(),
         ];
+
 
         $response = $this->postJson('api/blogs', $data);
 
@@ -55,6 +64,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_blocked_missing() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $data = [
         'title' => 'Blog title here',
         'body' => '',
@@ -69,6 +80,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_need_title() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $data = [
             'title' => '',
             'body' => 'hi',
@@ -82,6 +95,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_accepts_category() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $data = [
         'title' => 'I love Anto',
         'body' => 'Hes a loyal friend!',
@@ -96,6 +111,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_category_can_nullable() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $data = [
          'title' => 'Adam is bro',
          'body' => 'Possibly',
