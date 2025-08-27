@@ -153,4 +153,9 @@ class BlogControllerTest extends TestCase
         $response = $this->delete("api/blogs/{$blog->id}");
         $response->assertStatus(200);
     }
+
+    public function test_cant_delete_blog_not_exist() {
+          $response = $this->postJson('api/delete');
+          $response->assertStatus(404);
+    }
 }
