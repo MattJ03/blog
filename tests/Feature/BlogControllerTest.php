@@ -157,6 +157,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_update_fail_on_no_title() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $blog = Blog::factory()->create();
 
         $data = [
@@ -169,6 +171,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_delete_blog() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
         $blog = Blog::factory()->create();
 
         $response = $this->delete("api/blogs/{$blog->id}");
@@ -176,6 +180,8 @@ class BlogControllerTest extends TestCase
     }
 
     public function test_cant_delete_blog_not_exist() {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'sanctum');
           $response = $this->postJson('api/delete');
           $response->assertStatus(404);
     }
