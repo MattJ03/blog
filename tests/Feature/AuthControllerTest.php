@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Validator;
+use App\Models\Blog;
+use App\Services\BlogService;
 
 
 class AuthControllerTest extends TestCase
@@ -53,4 +55,21 @@ class AuthControllerTest extends TestCase
             'message',
         ]);
     }
+  public function test_logout_works()
+    {
+        $user = User::factory()->create([
+            'is_Admin' => true,
+        ]);
+
+        // Create a real token for the user
+        $token = $user->createToken('TestToken')->plainTextToken;
+
+        // Logout using the token
+        $logout = $this->withHeader('Authorization', "Bearer $token")
+                       ->postJson('api/logout');
+
+        $logout->assertStatus(200)
+               ->assertJson(['message' => 'user logged out']);
+    }
+    
 }
