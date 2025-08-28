@@ -33,7 +33,24 @@ class AuthControllerTest extends TestCase
         $response->assertJsonStructure([
             'token',
         ]);
+    }
 
-    
+    public function test_login_fail_wrong_creds() {
+        $password = 'arealpassword';
+        $user = User::Factory()->create([
+            'email' => 'correctemail@gmail.com',
+            'password' => bcrypt($password),
+            'is_Admin' => true,
+        ]);
+
+        $response = $this->postJson('api/login', [
+            'email' => 'realemail1@gmail.com',
+            'password' => $password,
+        ]);
+
+        $response->assertStatus(401);
+        $response->assertExactJsonStructure([
+            'message',
+        ]);
     }
 }
