@@ -25,4 +25,19 @@ async function login(email, password) {
     }
 }
 
+async function logout() {
+    loading.value = true;
+    try {
+        const res = await axios.post('api/logout');
+        user.value = null;
+        token.value = null;
+        localStorage.removeItem('token');
+        delete axios.defaults.headers.common['Authorization'];
+    } catch(error) {
+        console.log(error.response?.message || error.message);
+    } finally {
+        loading.value = false;
+    }
+}
+
 });
