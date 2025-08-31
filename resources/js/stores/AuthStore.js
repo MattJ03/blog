@@ -40,4 +40,12 @@ async function logout() {
     }
 }
 
+function init() {
+    const savedToken = localStorage.getItem('token');
+    if(savedToken) {
+        token.value = savedToken;
+        axios.defaults.headers.common['Authorization'] = "Bearer ${savedToken}"
+    }
+}
+
 });
