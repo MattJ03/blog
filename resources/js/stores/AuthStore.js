@@ -48,4 +48,11 @@ function init() {
     }
 }
 
+return [
+    token,
+    user, 
+    loading,
+    error,
+];
+
 });
