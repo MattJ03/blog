@@ -3,14 +3,14 @@ import { ref } from 'vue';
 import { reactive } from 'vue';
 import axios from 'axios';
 
-export const useBlogStore = defineStore('blog', {
+export const useBlogStore = defineStore('blog', () => {
 
     const loading = ref(false);
     const error = ref('');
     const blogs = ref([]);
-    const blog = reactive('');
+    const blog = reactive({});
 
-    async function getAllTasks() {
+    async function getAllBlogs() {
         loading.value = true;
         try {
             const res = await axios.get('api/blogs');
@@ -21,4 +21,12 @@ export const useBlogStore = defineStore('blog', {
             loading.value = false;
         }
     }
+
+    return [
+        loading, 
+        error,
+        blogs,
+        blog,
+        get
+    ]
 });
