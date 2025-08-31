@@ -22,6 +22,28 @@ export const useBlogStore = defineStore('blog', () => {
         }
     }
 
+    async function getBlog(id) {
+        loading.value = true;
+    try {
+        const res = await axios.get("api/blogs/$id");
+        blog.value = res.data.data;
+    } catch(error) {
+        console.log(error.response?.data || error.message);
+    } finally {
+        loading.value = false;
+    }
+    }
+
+    async function addBlog(blog) {
+        loading.value = true;
+        try {
+
+            const res = await axios.post('api/blogs', blog.value);
+        } catch(error) {
+            console.log(error.response?.data || error.message);
+        }
+    }
+
     return [
         loading, 
         error,
