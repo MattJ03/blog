@@ -14,6 +14,11 @@ export const useBlogStore = defineStore('blog', {
         loading.value = true;
         try {
             const res = await axios.get('api/blogs');
+            blogs.value = res.data.data;
+        } catch (error) {
+            console.log('error is ', error.response?.data || error.message);
+        } finally {
+            loading.value = false;
         }
     }
 });
