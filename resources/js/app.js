@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import App from 'resources/js/App.vue';
+import App from '../js/App.vue';
 import { createPinia } from 'pinia';
 import { useAuthStore } from '../js/stores/AuthStore';
 

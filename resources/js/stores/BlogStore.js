@@ -27,7 +27,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function getBlog(id) {
         loading.value = true;
     try {
-        const res = await api.get("api/blogs/$id");
+        const res = await api.get(`api/blogs/$id`);
         blog.value = res.data.data;
     } catch(error) {
         console.log(error.response?.data || error.message);
