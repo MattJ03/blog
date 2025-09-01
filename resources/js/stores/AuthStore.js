@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, reactive } from 'vue'; 
 import axios from 'axios';
+import api from '../axios';
 
 export const useAuthStore = defineStore('auth', () => {
 
@@ -12,12 +13,11 @@ const error = ref('');
 async function login(email, password) {
     loading.value = true;
     try {
-        const res = await axios.post('api/login', {email, password});
+        const res = await api.post('api/login', {email, password});
         user.value = res.data.user;
         token.value = res.data.token;
         localStorage.setItem('token', token.value);
 
-        axios.defaults.headers.common['Authorization'] = "Bearer ${token.value}";
     } catch(error) {
         console.log(error.response?.data || error.message);
     } finally {
@@ -28,11 +28,10 @@ async function login(email, password) {
 async function logout() {
     loading.value = true;
     try {
-        const res = await axios.post('api/logout');
+        const res = await api.post('api/logout');
         user.value = null;
         token.value = null;
         localStorage.removeItem('token');
-        delete axios.defaults.headers.common['Authorization'];
     } catch(error) {
         console.log(error.response?.message || error.message);
     } finally {
@@ -44,15 +43,17 @@ function init() {
     const savedToken = localStorage.getItem('token');
     if(savedToken) {
         token.value = savedToken;
-        axios.defaults.headers.common['Authorization'] = "Bearer ${savedToken}"
     }
 }
 
-return [
+return {
     token,
     user, 
     loading,
     error,
-];
+    login,
+    logout,
+    init,
+};
 
 });

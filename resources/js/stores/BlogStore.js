@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { reactive } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from './AuthStore';
+import api from '../axios';
 
 export const useBlogStore = defineStore('blog', () => {
 
@@ -14,7 +15,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function getAllBlogs() {
         loading.value = true;
         try {
-            const res = await axios.get('api/blogs');
+            const res = await api.get('api/blogs');
             blogs.value = res.data.data;
         } catch (error) {
             console.log('error is ', error.response?.data || error.message);
@@ -26,7 +27,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function getBlog(id) {
         loading.value = true;
     try {
-        const res = await axios.get("api/blogs/$id");
+        const res = await api.get("api/blogs/$id");
         blog.value = res.data.data;
     } catch(error) {
         console.log(error.response?.data || error.message);
@@ -38,17 +39,17 @@ export const useBlogStore = defineStore('blog', () => {
     async function addBlog(blog) {
         loading.value = true;
         try {
-            const res = await axios.post('api/blogs', blog.value);
+            const res = await api.post('api/blogs', blog.value);
         } catch(error) {
             console.log(error.response?.data || error.message);
         }
     }
 
-    return [
+    return {
         loading, 
         error,
         blogs,
         blog,
         get
-    ]
+};
 });
