@@ -5,8 +5,7 @@
         <div class="categories-section">
             <p> {{  blog.category }}</p>
         </div>
-        
-        
+
     </div>
 
 </template>
@@ -26,6 +25,7 @@ defineProps({
 .blog-container {
     margin: 2px;
     border-radius: 14px;
+    border: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,6 +45,9 @@ defineProps({
 }
 .blog-id {
     margin: 2px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 .categories-section {
     display: flex;

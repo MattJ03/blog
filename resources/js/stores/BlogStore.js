@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { reactive } from 'vue';
 import axios from 'axios';
+import { useAuthStore } from './AuthStore';
 
 export const useBlogStore = defineStore('blog', () => {
 
@@ -37,7 +38,6 @@ export const useBlogStore = defineStore('blog', () => {
     async function addBlog(blog) {
         loading.value = true;
         try {
-
             const res = await axios.post('api/blogs', blog.value);
         } catch(error) {
             console.log(error.response?.data || error.message);
