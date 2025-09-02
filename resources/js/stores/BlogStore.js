@@ -14,8 +14,10 @@ export const useBlogStore = defineStore('blog', () => {
 
     async function getAllBlogs() {
         loading.value = true;
+        console.log('check 1');
         try {
-            const res = await api.get('api/blogs');
+            console.log('check 2');
+            const res = await api.get('blogs');
             blogs.value = res.data.data;
         } catch (error) {
             console.log('error is ', error.response?.data || error.message);
@@ -27,7 +29,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function getBlog(id) {
         loading.value = true;
     try {
-        const res = await api.get(`api/blogs/${id}`);
+        const res = await api.get(`blogs/${id}`);
         blog.value = res.data.data;
     } catch(error) {
         console.log(error.response?.data || error.message);
@@ -39,7 +41,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function addBlog(blog) {
         loading.value = true;
         try {
-            const res = await api.post('api/blogs', blog.value);
+            const res = await api.post('blogs', blog.value);
             blogs.push(blog);
         } catch(error) {
             console.log(error.response?.data || error.message);

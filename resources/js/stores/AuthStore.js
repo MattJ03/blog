@@ -13,7 +13,7 @@ const error = ref('');
 async function login(email, password) {
     loading.value = true;
     try {
-        const res = await api.post('api/login', {email, password});
+        const res = await api.post('login', {email, password});
         user.value = res.data.user;
         token.value = res.data.token;
         localStorage.setItem('token', token.value);
@@ -28,7 +28,7 @@ async function login(email, password) {
 async function logout() {
     loading.value = true;
     try {
-        const res = await api.post('api/logout');
+        const res = await api.post('logout');
         user.value = null;
         token.value = null;
         localStorage.removeItem('token');
@@ -44,7 +44,7 @@ function init() {
     if(savedToken) {
         token.value = savedToken;
     }
-    
+
 }
 
 return {
