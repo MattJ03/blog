@@ -1,11 +1,11 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>My Vue app</title>
-        @vite(['resources/js/app.js']);
+        @vite(['resources/js/app.js'])
     </head>
     <body>
-        <div id="app">
+        <div id="app"> </div>
     </body>
     </html>

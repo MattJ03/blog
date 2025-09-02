@@ -1,17 +1,18 @@
 <template>
     <div class="blog-container">
-        <p class="blog-id"> {{ blog.id }} </p>
+        <h2 class="blog-id"> {{ blog.id }} </h2>
         <p class="blog-title"> {{ blog.title }}</p>
         <div class="categories-section">
             <p> {{  blog.category }}</p>
         </div>
 
     </div>
-
+  
 </template>
 <script setup>
-import { ref, reative } from 'vue';
+import { ref, reactive } from 'vue';
 import { computed } from 'vue';
+
 
 defineProps({
     blog: {
@@ -26,6 +27,7 @@ defineProps({
     margin: 2px;
     border-radius: 14px;
     border: 2px;
+    border-color: #F2F0EF;
     display: flex;
     flex-direction: column;
     justify-content: center;

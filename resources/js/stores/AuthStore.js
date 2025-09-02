@@ -44,6 +44,7 @@ function init() {
     if(savedToken) {
         token.value = savedToken;
     }
+    
 }
 
 return {
