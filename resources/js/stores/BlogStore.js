@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { reactive } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from './AuthStore';
@@ -11,6 +11,7 @@ export const useBlogStore = defineStore('blog', () => {
     const error = ref('');
     const blogs = ref([]);
     const blog = ref({});
+    const emptyBlog = computed(() => blogs.length === 0);
 
     async function getAllBlogs() {
         loading.value = true;

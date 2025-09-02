@@ -1,6 +1,12 @@
 <template>
     <h1> Hello </h1>
     <div class="loading-message" v-if="blogStore.loading"> Wait a second... </div>
+    <div class="no-blogs" v-else-if="blogStore.blogs.length === 0"> Still not used this... </div>
+    <BlogGrid
+    v-for="blog in blogStore.blogs"
+    :key="blog.id"
+    :blog="blog"
+    />
 </template>
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
