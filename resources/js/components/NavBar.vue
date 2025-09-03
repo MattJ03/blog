@@ -16,7 +16,7 @@
        padding: 2px;
        display: flex;
        flex-direction: row;
-       justify-content: center;
+       justify-content: space-between;
        align-items: center;
        gap: 1rem;
        height: 100px;
@@ -30,8 +30,8 @@
 .logo {
     margin: 1rem;
     border-radius: 50%;
-    height: 90%;
-    float: left;
+    height: 80%; 
+    
 
 }
 </style>
