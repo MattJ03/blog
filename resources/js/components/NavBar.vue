@@ -3,8 +3,10 @@
         <div class="logo">
             <img src="/public/whitecircleblack.jpg" class="logo" alt="logo"></img>
         </div>
-        <RouterLink to="/"> Blogs </RouterLink>
+        <div class="">
+        <RouterLink class="link-title" to="/"> Blogs </RouterLink>
 
+          </div>
     </nav>
 
     </template>
@@ -31,7 +33,17 @@
     margin: 1rem;
     border-radius: 50%;
     height: 80%; 
+}
+.nav-links{
+    display: flex;
+    gap: 1rem;
+}
+.link-title {
+    color: #71797E;
+    text-decoration: none;
+}
+.link-title:hover {
+    color: #F2F0EF;
     
-
 }
 </style>
