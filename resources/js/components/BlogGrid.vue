@@ -5,21 +5,22 @@
         <div class="categories-section">
             <p> {{  blog.category }}</p>
         </div>
-
+        
     </div>
   
 </template>
 <script setup>
 import { ref, reactive } from 'vue';
 import { computed } from 'vue';
-
+import { useBlogStore } from '../stores/BlogStore';
 
 defineProps({
     blog: {
     type: Object,
     required: true,
     }
-})
+});
+
 
 </script>
 <style scoped>

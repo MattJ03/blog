@@ -35,6 +35,14 @@ class BlogController extends Controller {
       'data' => $blog], 201);
    }
 
+   public function show($id) {
+      $blog = Blog::findOrFail($id);
+      if(!$blog) {
+         return response()->json(['message' => 'blog not found']);
+      }
+      return response()->json(['blog' => $blog]);
+   }
+
    public function update(Request $request, $id) {
 
       if(!$request->user()->is_Admin) {

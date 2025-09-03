@@ -6,8 +6,8 @@
     <BlogGrid
     v-for="blog in blogStore.blogs"
     :key="blog.id"
-    :blog="blog"
-    />
+    :blog="blog"/>
+    <RouterLink to="blog/${blog.id}"></RouterLink>
     </div>
 </template>
 <script setup>
@@ -16,12 +16,15 @@ import { computed } from 'vue';
 import BlogGrid from '../components/BlogGrid.vue';
 import { useBlogStore } from '../stores/BlogStore';
 import NavBar from '../components/NavBar.vue';
+import { RouterLink } from 'vue-router';
 
 const blogStore = useBlogStore();
 
 onMounted(() => {
     blogStore.getAllBlogs();
 });
+
+
 </script>
 <style scoped>
 .blog-wrapper {
