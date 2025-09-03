@@ -1,18 +1,21 @@
 <template>
-    <h1> Hello </h1>
+    <NavBar></NavBar>
     <div class="loading-message" v-if="blogStore.loading"> Wait a second... </div>
     <div class="no-blogs" v-else-if="blogStore.blogs.length === 0"> Still not used this... </div>
+    <div class v-else>
     <BlogGrid
     v-for="blog in blogStore.blogs"
     :key="blog.id"
     :blog="blog"
     />
+    </div>
 </template>
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
 import { computed } from 'vue';
 import BlogGrid from '../components/BlogGrid.vue';
 import { useBlogStore } from '../stores/BlogStore';
+import NavBar from '../components/NavBar.vue';
 
 const blogStore = useBlogStore();
 
@@ -21,13 +24,13 @@ onMounted(() => {
 });
 </script>
 <style scoped>
-.blog-container {
-    margin: 2px;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.blog-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 1rem;
+   margin-top: 1rem;
+
 }
 .blog-title {
     margin: 2px;

@@ -24,15 +24,17 @@ defineProps({
 </script>
 <style scoped>
 .blog-container {
-    margin: 2px;
+    margin: 1rem auto;
     border-radius: 14px;
-    border: 2px;
+    border: 2px, solid;
     border-color: #F2F0EF;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222428;
+    width: 50%;
+
 }
 .blog-title {
     margin: 2px;
@@ -53,7 +55,7 @@ defineProps({
 }
 .categories-section {
     display: flex;
-    background-color: #F2F0EF;
+   
 }
 
 </style>
