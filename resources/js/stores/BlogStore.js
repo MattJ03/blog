@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from './AuthStore';
 import api from '../axios';
+import router from '../router/index';
 
 export const useBlogStore = defineStore('blog', () => {
 
@@ -44,6 +45,7 @@ export const useBlogStore = defineStore('blog', () => {
         try {
             const res = await api.post('blogs', blog.value);
             blogs.push(blog);
+            router.push('/blogs')
         } catch(error) {
             console.log(error.response?.data || error.message);
         }

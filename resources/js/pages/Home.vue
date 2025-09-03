@@ -4,10 +4,11 @@
     <div class="no-blogs" v-else-if="blogStore.blogs.length === 0"> Still not used this... </div>
     <div class v-else>
     <BlogGrid
-    v-for="blog in blogStore.blogs"
+    v-for="blog in blogStore.blogs" 
     :key="blog.id"
-    :blog="blog"/>
-    <RouterLink to="blog/${blog.id}"></RouterLink>
+    :blog="blog"
+    @click="openBlog(blog.id)"
+    />
     </div>
 </template>
 <script setup>
@@ -16,13 +17,18 @@ import { computed } from 'vue';
 import BlogGrid from '../components/BlogGrid.vue';
 import { useBlogStore } from '../stores/BlogStore';
 import NavBar from '../components/NavBar.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 
 const blogStore = useBlogStore();
+const router = useRouter();
 
 onMounted(() => {
     blogStore.getAllBlogs();
 });
+
+function openBlog() {
+    router.push(`blogs\${id}`);
+}
 
 
 </script>

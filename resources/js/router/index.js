@@ -9,7 +9,7 @@ import Blog from '../pages/Blog.vue';
 const routes = [
     { path: '/', component: Home },
     { path: '/about', component: About },
-    { path: '/blog', component: Blog },
+    { path: '/blog:id', component: Blog },
 ];
 
 const router = createRouter({
