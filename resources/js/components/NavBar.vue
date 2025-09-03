@@ -42,6 +42,9 @@
 .nav-links{
     display: flex;
     gap: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .link-title {
     color: #71797E;
