@@ -11,7 +11,7 @@ export const useBlogStore = defineStore('blog', () => {
     const loading = ref(false);
     const error = ref('');
     const blogs = ref([]);
-    const blog = ref({});
+    const blog = ref(null);
     const emptyBlog = computed(() => blogs.length === 0);
 
     async function getAllBlogs() {
@@ -31,10 +31,13 @@ export const useBlogStore = defineStore('blog', () => {
     async function getBlog(id) {
         loading.value = true;
     try {
+        console.log('running try in method for getBlog',);
         const res = await api.get(`blogs/${id}`);
         blog.value = res.data.data;
+        console.log('got the  blog');
     } catch(error) {
         console.log(error.response?.data || error.message);
+        console.log('got the error');
     } finally {
         loading.value = false;
     }
@@ -43,6 +46,7 @@ export const useBlogStore = defineStore('blog', () => {
     async function addBlog(blog) {
         loading.value = true;
         try {
+            console.log('running the try part of the method in store');
             const res = await api.post('blogs', blog.value);
             blogs.push(blog);
             router.push('/blogs')
