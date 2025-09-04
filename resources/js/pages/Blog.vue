@@ -1,26 +1,17 @@
 <template>
-    <NavBar>
+<NavBar></NavBar>
+</template>
+<script setup>
+import { ref, reactive, onMounted } from 'vue';
+import { useBlogStore } from '../stores/BlogStore';
+import router from '../router/index';
+import { useRoute, useRouter } from 'vue-router';
+import NavBar from '../components/NavBar.vue';
 
-    </NavBar>
-    <div class="blog-container">
-        <h2 class="title"> {{ blog.title }}</h2>
-        <br class="line=break"></br>
-        <
-    </div>
-    
-    </template>
-    <script setup>
-    import { ref, reactive, onMounted } from 'vue';
-    import { marked } from 'marked';
-    
-    import NavBar from '../components/NavBar.vue';
-   
-    const props = defineProps( {
-        blog: {
-            type: Object,
-            required: true,
-        }
-    });
+const blogStore = useBlogStore();
+const route= useRoute();
+
+
 
 
 </script>

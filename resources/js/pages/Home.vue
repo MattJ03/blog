@@ -7,7 +7,7 @@
     v-for="blog in blogStore.blogs" 
     :key="blog.id"
     :blog="blog"
-    @click="openBlog(blog.id)"
+     @click="openBlog(blog.id)"
     />
     </div>
 </template>
@@ -26,10 +26,9 @@ onMounted(() => {
     blogStore.getAllBlogs();
 });
 
-function openBlog() {
-    router.push(`blogs\${id}`);
+function openBlog(id) {
+    router.push(`/blog/${id}`);
 }
-
 
 </script>
 <style scoped>
