@@ -30,6 +30,7 @@ export const useBlogStore = defineStore('blog', () => {
 
     async function getBlog(id) {
         loading.value = true;
+        blog.value = null;
     try {
         console.log('running try in method for getBlog',);
         const res = await api.get(`blogs/${id}`);

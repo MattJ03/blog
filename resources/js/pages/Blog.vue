@@ -1,13 +1,14 @@
 <template>
 <NavBar></NavBar>
 <div class="loading" v-if="blogStore.loading === true"> Wait a moment... </div>
-<div class="error" v-else-if="blogStore.blog === null"> Cooked </div>
-<div v-else-if="blogStore.blog"> 
+<div v-else-if="blogStore.blog !== null"> 
+    <h1>Hello</h1>
     <BlogTemplate
      :blog="blogStore.blog">
 
     </BlogTemplate>
 </div>
+<div v-else class="loading"> No Blog Found </div>
 
 </template>
 <script setup>

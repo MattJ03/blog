@@ -41,6 +41,7 @@ class BlogController extends Controller {
          return response()->json(['message' => 'blog not found']);
       }
       return response()->json(['blog' => $blog]);
+      Log::info('blog was shown correctly in the show method');
    }
 
    public function update(Request $request, $id) {
@@ -60,6 +61,7 @@ class BlogController extends Controller {
          'data' => $blog,
          'message' => 'blog updated',
       ], 200);
+      
    }
 
    public function delete($id) {

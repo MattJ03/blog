@@ -1,6 +1,6 @@
     <template>
         <div class="blog-container">
-        <h1 class="title"> {{ blog.title }}</h1>
+        <h1 class="title"> {{ props.blog.title }}</h1>
         <hr class="break-tag"></hr>
 
         </div>

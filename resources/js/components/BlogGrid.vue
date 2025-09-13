@@ -4,6 +4,7 @@
         <p class="blog-title"> {{ blog.title }}</p>
         <div class="categories-section">
             <p> {{  blog.category }}</p>
+            
         </div>
         
     </div>
