@@ -2,14 +2,15 @@
       <div class="blog-container">
         <h1 class="title"> {{ blog.title }} </h1>
         <hr class="break-tag"></hr>
-        <p class="body"> {{  blog.body }} </p>
+        <div v-html="safeBody" class="body"></div>      
 
         </div>
     </template>
     <script setup>
-    import { ref, reactive, onMounted } from 'vue';
-    import { Marked } from 'marked';
+    import { ref, reactive, onMounted, watch, computed } from 'vue';
+    import { marked } from 'marked';
     import DOMpurify from 'dompurify';
+    
 
     const props = defineProps({
         blog: {
@@ -18,10 +19,13 @@
         }
     });
 
-    onMounted(() => {
-     
+  const safeBody = computed(() => {
+    return props.blog?.body ? DOMpurify.sanitize(marked(props.blog.body)) : '';
+  });
 
-    });
+
+
+    
    
     console.log('blog prop: ', props.blog);
 
@@ -59,5 +63,6 @@
  justify-content: center;
  align-items: center;
  font-size: 20px;
+ padding: 40px;
 }
 </style>
