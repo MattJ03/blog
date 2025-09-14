@@ -7,6 +7,7 @@ import About from '../pages/About.vue';
 import Projects from '../pages/Projects.vue';
 import Blog from '../pages/Blog.vue';
 import Login from '../pages/Login.vue';
+import Create from '../pages/Create.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -14,6 +15,7 @@ const routes = [
     { path: '/blog/:id', component: Blog },
     { path: '/projects', name:'blog', component: Projects },
     { path: '/login', component: Login },
+    { path: '/create', component: Create },
 ];
 
 const router = createRouter({
