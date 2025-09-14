@@ -2,18 +2,25 @@
       <div class="blog-container">
         <h1 class="title"> {{ blog.title }} </h1>
         <hr class="break-tag"></hr>
-        <p class="category"> {{  blog.category }} </p>
+        <p class="body"> {{  blog.body }} </p>
 
         </div>
     </template>
     <script setup>
-    import { ref, reactive } from 'vue';
-    
+    import { ref, reactive, onMounted } from 'vue';
+    import { Marked } from 'marked';
+    import DOMpurify from 'dompurify';
+
     const props = defineProps({
         blog: {
             type: Object,
             required: true,
         }
+    });
+
+    onMounted(() => {
+     
+
     });
    
     console.log('blog prop: ', props.blog);
@@ -35,7 +42,7 @@
 }
 .title {
       color: #f2f2f2;
-    font-size: 18px;
+    font-size: 30px;
 }
 .break-tag {
     color: #f2f2f2;
@@ -45,5 +52,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.body {
+ color: #f2f2f2;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 20px;
 }
 </style>
