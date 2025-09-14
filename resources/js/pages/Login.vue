@@ -3,7 +3,7 @@
     <div class="wrapper">
     <img src="/public/whitecircleblack.jpg" class="logo"></img>
     <div class="login-container">
-        <form @submit.prevent="">
+        <form @submit.prevent="submitLogin">
             <h2 class="login-header"> Login </h2>
             <div class="form-group">
                 <input type="email" class="email" v-model="email" placeholder="email..."></input>
@@ -11,7 +11,7 @@
             <div class="form-group">
                 <input type="password" class="email" v-model="password" placeholder="password..."></input>
             </div>
-            <button class="login-btn"> Login </button>
+            <button type="submit" class="login-btn">Log in </button>
         </form>
     </div>
 </div>
@@ -22,14 +22,18 @@ import { ref, reactive, computed } from 'vue';
 import { useAuthStore } from '../stores/AuthStore';
 import NavBar from '../components/NavBar.vue';
 import { useRouter } from 'vue-router';
+
 const email = ref('');
 const password = ref('');
 
 const authStore = useAuthStore();
+const router = useRouter();
 
-function submitLogin() {
-    authStore.login(email, password);
-    router.push('/home');
+async function submitLogin() {
+   await authStore.login(email.value, password.value);
+   if(authStore.token) {
+    router.push('/');
+   }
 }
 
 </script>
@@ -85,6 +89,12 @@ function submitLogin() {
     margin-right: auto;
     width: 50%;
     height: 55px;
+    font-size: 15px;
     border-radius: 16px;
+    background-color: #F2F0EF;
+    margin-bottom: 20px;
+}
+.login-btn:hover {
+    background-color: #E2DFD2;
 }
 </style>
