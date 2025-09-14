@@ -5,8 +5,9 @@
         </div>
         <div class="nav-links">
         <RouterLink class="link-title" to="/"> Blogs </RouterLink>
-           <RouterLink class="link-title" to="/projects"> Projects </RouterLink>
+        <RouterLink class="link-title" to="/projects"> Projects </RouterLink>
         <RouterLink class="link-title" to="/about"> About </RouterLink>
+        <RouterLink class="link-title" to="/login"> Log In </RouterLink>
      
         <a href="https://github.com/MattJ03" class="link-title">
             <img src="/public/git.png" class="nav-bar-logo-git" />
