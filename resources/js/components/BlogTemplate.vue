@@ -1,7 +1,8 @@
     <template>
-        <div class="blog-container">
-        <h1 class="title"> {{ props.blog.title }}</h1>
+      <div class="blog-container">
+        <h1 class="title"> {{ blog.title }} </h1>
         <hr class="break-tag"></hr>
+        <p class="category"> {{  blog.category }} </p>
 
         </div>
     </template>
@@ -9,11 +10,13 @@
     import { ref, reactive } from 'vue';
     
     const props = defineProps({
-        blog : {
+        blog: {
             type: Object,
             required: true,
         }
     });
+   
+    console.log('blog prop: ', props.blog);
 
     console.log('blog template');
 </script>
@@ -36,5 +39,11 @@
 }
 .break-tag {
     color: #f2f2f2;
+    width: 100%;
+}
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

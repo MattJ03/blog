@@ -1,8 +1,8 @@
 <template>
 <NavBar></NavBar>
 <div class="loading" v-if="blogStore.loading === true"> Wait a moment... </div>
+<div class="error" v-else-if="blogStore.error"> {{  blogStore.error }}</div>
 <div v-else-if="blogStore.blog !== null"> 
-    <h1>Hello</h1>
     <BlogTemplate
      :blog="blogStore.blog">
 
@@ -26,6 +26,7 @@ onMounted(() => {
     console.log('mounted');
     const blogId = route.params.id;
     blogStore.getBlog(blogId);
+    console.log(route.params.id);
 })
 
 

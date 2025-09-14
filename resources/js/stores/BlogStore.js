@@ -34,7 +34,7 @@ export const useBlogStore = defineStore('blog', () => {
     try {
         console.log('running try in method for getBlog',);
         const res = await api.get(`blogs/${id}`);
-        blog.value = res.data.data;
+        blog.value = res.data.blog;
         console.log('got the  blog');
     } catch(error) {
         console.log(error.response?.data || error.message);
