@@ -2,7 +2,9 @@
     <NavBar></NavBar>
     <div class="container">
         <input type="text" class="title" v-model="title" placeholder="Title...">
+        <input type="text" class="category" v-model="category" placeholder="Category..."></input>
         <textarea class="blog-content" v-model="body" placeholder="Content..."></textarea>
+
     </div>
 </template>
 <script setup>
@@ -16,6 +18,7 @@ const blogStore = useBlogStore();
 const title = ref('');
 const body = ref('');
 const category = ref('');
+
 </script>
 <style scoped>
 .container {
@@ -45,7 +48,7 @@ const category = ref('');
      color: #F2F0EF;
      border-radius: 12px;
      size-adjust: wrap;
-
+     margin-bottom: 10px;
 }
 .blog-content {
     display: flex;
@@ -54,6 +57,23 @@ const category = ref('');
     margin: auto;
     width: 100%;
     height: 100vh;
-
+    background-color: #3b3b3b;
+    color: #F2F0EF;
+    font-size: large;
+    border-radius: 12px;
+}
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F0EF;
+    height: 20px;
+    margin-right: auto;
+    margin-left: 10%;
+    background-color: #3b3b3b;
+    margin-bottom: 15px;
+    color: #F2F0EF;
+    font-size: 18px;
+    border-radius: 12px;
 }
 </style>
