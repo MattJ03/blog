@@ -78,5 +78,7 @@ async function createBlog(title, body, category) {
     border-radius: 12px;
 }
 .create-button {
+    padding: 0.5rem 1rem;
+    
 }
 </style>
