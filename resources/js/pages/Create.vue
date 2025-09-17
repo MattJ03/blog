@@ -1,10 +1,15 @@
 <template>
-    <NavBar></NavBar>
+    <NavBar></NavBar>    
+
     <div class="container">
+        <div class="header-row">
+            <button type="submit" class="create-button">Post</button>
+        </div>
+        <form @submit.prevent="createBlog">
         <input type="text" class="title" v-model="title" placeholder="Title...">
         <input type="text" class="category" v-model="category" placeholder="Category..."></input>
         <textarea class="blog-content" v-model="body" placeholder="Content..."></textarea>
-
+        </form>
     </div>
 </template>
 <script setup>
@@ -15,33 +20,37 @@ import { useBlogStore } from '../stores/BlogStore';
 
 const blogStore = useBlogStore();
 
+
 const title = ref('');
 const body = ref('');
 const category = ref('');
 
+async function createBlog(title, body, category) {
+     await blogStore.addBlog({
+        title: title.value,
+        body: body.value,
+        category: category.value,
+     });
+    }
+
 </script>
 <style scoped>
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #222428;
-    width: 30%;
+    width: 40%;
     margin: 10px auto;
     border-radius: 14px;
     padding: 20px;
 }
+.header-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
 .title {
      font-size: 20px;
      background-color: #3b3b3b;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
      border:#222428;
-     display: flex;
-     justify-content: left;
      margin-right: auto;
      width: 100%;
      height: 30px;
@@ -51,9 +60,6 @@ const category = ref('');
      margin-bottom: 10px;
 }
 .blog-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: auto;
     width: 100%;
     height: 100vh;
@@ -63,17 +69,14 @@ const category = ref('');
     border-radius: 12px;
 }
 .category {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #F2F0EF;
     height: 20px;
-    margin-right: auto;
-    margin-left: 10%;
     background-color: #3b3b3b;
     margin-bottom: 15px;
     color: #F2F0EF;
     font-size: 18px;
     border-radius: 12px;
+}
+.create-button {
 }
 </style>
