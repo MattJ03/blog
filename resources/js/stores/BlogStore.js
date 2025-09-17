@@ -48,8 +48,8 @@ export const useBlogStore = defineStore('blog', () => {
         loading.value = true;
         try {
             console.log('running the try part of the method in store');
-            const res = await api.post('blogs', blog.value);
-            blogs.push(blog);
+            const res = await api.post('blogs', blog);
+            blogs.push(res.data);
             router.push('/blogs')
         } catch(error) {
             console.log(error.response?.data || error.message);

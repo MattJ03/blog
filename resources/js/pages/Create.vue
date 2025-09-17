@@ -3,9 +3,9 @@
 
     <div class="container">
         <div class="header-row">
-            <button type="submit" class="create-button">Post</button>
+            <button type="submit" class="create-button" @click="createBlog">Post</button>
         </div>
-        <form @submit.prevent="createBlog">
+        <form @submit.prevent="">
         <input type="text" class="title" v-model="title" placeholder="Title...">
         <input type="text" class="category" v-model="category" placeholder="Category..."></input>
         <textarea class="blog-content" v-model="body" placeholder="Content..."></textarea>
@@ -16,21 +16,24 @@
 import { ref, reactive, computed } from 'vue';
 import NavBar from '../components/NavBar.vue';
 import { useBlogStore } from '../stores/BlogStore';
-
+import { useRouter } from 'vue-router';
 
 const blogStore = useBlogStore();
-
+const router = useRouter();
 
 const title = ref('');
 const body = ref('');
 const category = ref('');
 
-async function createBlog(title, body, category) {
+async function createBlog() {
      await blogStore.addBlog({
         title: title.value,
         body: body.value,
         category: category.value,
      });
+
+     console.log('blog created');
+    
     }
 
 </script>
@@ -79,6 +82,11 @@ async function createBlog(title, body, category) {
 }
 .create-button {
     padding: 0.5rem 1rem;
+    font-size: 16px;
+    background-color:#F2F0EF;
+    width: 14%;
+    border: #3b3b3b;
+    border-radius: 14px;
     
 }
 </style>
