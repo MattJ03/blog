@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useAuthStore } from './AuthStore';
 import api from '../axios';
 import router from '../router/index';
+import { useRouter } from 'vue-router';
 
 export const useBlogStore = defineStore('blog', () => {
 
@@ -13,6 +14,8 @@ export const useBlogStore = defineStore('blog', () => {
     const blogs = ref([]);
     const blog = ref(null);
     const emptyBlog = computed(() => blogs.length === 0);
+
+    const router = useRouter();
 
     async function getAllBlogs() {
         loading.value = true;
@@ -49,11 +52,14 @@ export const useBlogStore = defineStore('blog', () => {
         try {
             console.log('running the try part of the method in store');
             const res = await api.post('blogs', blog);
-            blogs.push(res.data);
-            router.push('/blogs')
+            console.log('before push blog');
+            blogs.value.push(res.data);
+            return res.data;
+            console.log('router used');
         } catch(error) {
             console.log(error.response?.data || error.message);
         }
+        loading.value = false;
     }
 
     return {

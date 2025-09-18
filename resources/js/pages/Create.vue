@@ -26,12 +26,16 @@ const body = ref('');
 const category = ref('');
 
 async function createBlog() {
-     await blogStore.addBlog({
+   const newBlog = await blogStore.addBlog({
         title: title.value,
         body: body.value,
         category: category.value,
      });
 
+     if(newBlog) {
+        router.push('/');
+     }
+     
      console.log('blog created');
     
     }

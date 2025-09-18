@@ -46,6 +46,7 @@ defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 22px;
 }
 .blog-body {
     margin: 2px;
