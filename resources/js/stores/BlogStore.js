@@ -13,17 +13,22 @@ export const useBlogStore = defineStore('blog', () => {
     const error = ref('');
     const blogs = ref([]);
     const blog = ref(null);
+    const currentBlog = ref('');
     const emptyBlog = computed(() => blogs.length === 0);
-
+    const pagination = ref({current_page: 1, last_page: 1});
     const router = useRouter();
 
-    async function getAllBlogs() {
+    async function getAllBlogs(page = 1) {
         loading.value = true;
         console.log('check 1');
         try {
             console.log('check 2');
             const res = await api.get('blogs');
             blogs.value = res.data.data;
+            pagination.value = {
+                current_page: res.data.current_page,
+                last_page: res.data.last_page,
+            };
         } catch (error) {
             console.log('error is ', error.response?.data || error.message);
         } finally {
@@ -58,8 +63,9 @@ export const useBlogStore = defineStore('blog', () => {
             console.log('router used');
         } catch(error) {
             console.log(error.response?.data || error.message);
-        }
+        } finally {
         loading.value = false;
+        }
     }
 
     return {

@@ -9,6 +9,10 @@
     :blog="blog"
      @click="openBlog(blog.id)"
     />
+    <div class="pagination">
+       <button class="prev-button" :disabled="blogStore.current_page === 1" @click="blogStore.getAllBlogs(blogStore.pagination.current_page - 1)"> Prev </button>
+       <button class="next-button"> Next </button>
+    </div>
     </div>
     <div v-if="admin">
         <button class="add-blog" @click="router.push('/create')"> + </button>
@@ -31,6 +35,7 @@ const router = useRouter();
 
 onMounted(() => {
     blogStore.getAllBlogs();
+    
 });
 
 function openBlog(id) {
@@ -89,8 +94,41 @@ const admin = authStore.token;
     background-color: #F2F0EF;
     font-size: 15px;
     border-radius: 50px;
-    margin-top: 200px;
+    margin-bottom: 90%;
     margin-left:  95%;
     margin-right: auto;
+}
+.pagination {
+    width: 150px;
+    height: 60px;
+    margin-left: 75%;
+    border-radius: 14px;
+    border: 0;
+}
+.prev-button {
+   height: 60px;
+   width: 50%;
+   font-size: 18px;
+   background-color: #222428;
+   color: #F2F0EF;
+   border-radius: 14px;
+   border-top-right-radius: 0%;
+   border-bottom-right-radius: 0%;
+   border: 0;
+}
+.prev-button:disabled {
+    background-color: #ff0f0f;
+}
+.next-button {
+    height: 60px;
+    width: 50%;
+    font-size: 18px;
+    background-color: #222428;
+    color: #F2F0EF;
+    border-radius: 14px;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border: 0;
+
 }
 </style>
