@@ -10,8 +10,8 @@
      @click="openBlog(blog.id)"
     />
     <div class="pagination">
-       <button class="prev-button" :disabled="blogStore.current_page === 1" @click="blogStore.getAllBlogs(blogStore.pagination.current_page - 1)"> Prev </button>
-       <button class="next-button"> Next </button>
+       <button class="prev-button" :disabled="blogStore.pagination.current_page === 1" @click="blogStore.getAllBlogs(blogStore.pagination.current_page - 1)"> Prev </button>
+       <button class="next-button" :disabled="blogStore.pagination.current_page === blogStore.pagination.last_page" @click="blogStore.getAllBlogs(blogStore.pagination.current_page + 1)"> Next </button>
     </div>
     </div>
     <div v-if="admin">
@@ -129,6 +129,5 @@ const admin = authStore.token;
     border-top-left-radius: 0%;
     border-bottom-left-radius: 0%;
     border: 0;
-
 }
 </style>
